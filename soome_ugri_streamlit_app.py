@@ -11,14 +11,14 @@ import streamlit as st
 # ─────────────────────────────────────────────────────────
 
 st.set_page_config(
-    page_title="Soome-ugri museaalide explorer",
+    page_title="Soome-ugri museaalid",
     page_icon="🧭",
     layout="wide",
 )
 
 BASE_DIR = Path(__file__).parent
 DATA_DIR = BASE_DIR / "app_ready_tables"
-ASSET_DIR = BASE_DIR / "assets"
+#ASSET_DIR = BASE_DIR / "assets"
 
 
 # ─────────────────────────────────────────────────────────
@@ -332,19 +332,19 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-image_paths = [
-    ASSET_DIR / "452255_ERM_Fk3105_284_452255.jpg",
-    ASSET_DIR / "147209_ERM_Fk2113_28_147209.jpg",
-    ASSET_DIR / "197539_ERM_Fk1474_40_197539_pisipilt.jpg",
-    ASSET_DIR / "282619_ERM_Fk1474_77_282619.jpg",
-]
+#image_paths = [
+#    ASSET_DIR / "452255_ERM_Fk3105_284_452255.jpg",
+#    ASSET_DIR / "147209_ERM_Fk2113_28_147209.jpg",
+#    ASSET_DIR / "197539_ERM_Fk1474_40_197539_pisipilt.jpg",
+#    ASSET_DIR / "282619_ERM_Fk1474_77_282619.jpg",
+#]
 
-existing_images = [p for p in image_paths if p.exists()]
-if existing_images:
-    cols = st.columns(len(existing_images))
-    for col, img_path in zip(cols, existing_images):
-        with col:
-            st.image(str(img_path), use_container_width=True)
+#existing_images = [p for p in image_paths if p.exists()]
+#if existing_images:
+#    cols = st.columns(len(existing_images))
+#    for col, img_path in zip(cols, existing_images):
+#        with col:
+#            st.image(str(img_path), use_container_width=True)
 
 
 # ─────────────────────────────────────────────────────────
