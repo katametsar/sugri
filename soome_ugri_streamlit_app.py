@@ -321,12 +321,12 @@ if "year" in objects.columns and objects["year"].notna().any():
 # Title and images
 # ─────────────────────────────────────────────────────────
 
-st.title("Soome-ugri museaalide explorer")
+st.title("Soome-ugri museaalid")
 st.markdown(
     """
     <div class="intro-text">
-    Prototüüp soome-ugri kogude uurimiseks: rahvarühmad, kogujad, materjalid,
-    ajastus ja kohainfo. Kaardivaade tuleb hiljem, kui asukohad on eraldi puhastatud.
+    Prototüüp Eesti Rahva Muuseumi soome-ugri kogu uurimiseks. Hetkel saab andmestikku filtreerida järgnevate kategooriate järgi: rahvarühm, koguja, materjal,
+    korjamise aeg ja koht. Kaardivaade on veel tööjärgus.
     </div>
     """,
     unsafe_allow_html=True,
