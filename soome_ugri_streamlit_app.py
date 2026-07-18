@@ -3,6 +3,7 @@ from pathlib import Path
 import pandas as pd
 import plotly.express as px
 import streamlit as st
+from map_view import render_map
 
 
 # ─────────────────────────────────────────────────────────
@@ -431,9 +432,17 @@ if len(df) == 0:
 # Tabs
 # ─────────────────────────────────────────────────────────
 
-tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs([
-    "Ülevaade", "Rahvarühmad", "Materjalid", "Kogujad", "Kohad", "Andmetabel",
-])
+tab1, tab2, tab3, tab4, tab5, tab6, tab7 = st.tabs(
+    [
+        "Ülevaade",
+        "Rahvarühmad",
+        "Materjalid",
+        "Kogujad",
+        "Kohad",
+        "Kaart",
+        "Andmetabel",
+    ]
+)
 
 
 # ── Tab 1: Ülevaade ──────────────────────────────────────
@@ -660,10 +669,12 @@ with tab5:
         unsafe_allow_html=True,
     )
 
-
+with tab6:
+    render_map(df)
+    
 # ── Tab 6: Andmetabel ─────────────────────────────────────
 
-with tab6:
+with tab7:
     st.subheader("Andmetabel")
 
     default_cols = [c for c in [
