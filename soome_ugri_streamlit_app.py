@@ -60,21 +60,25 @@ st.markdown(
 # ─────────────────────────────────────────────────────────
 # Data loading
 # ─────────────────────────────────────────────────────────
-
 @st.cache_data
 def load_data():
     objects = pd.read_csv(DATA_DIR / "objects_app.csv")
     materials = pd.read_csv(DATA_DIR / "materials_long.csv")
     collectors = pd.read_csv(DATA_DIR / "collectors_long.csv")
-    # object_best_place: one best location per object (district and place_key columns removed)
-    best_place = pd.read_csv(DATA_DIR / "object_best_place.csv")
+
+    best_place = pd.read_csv(
+        DATA_DIR / "object_best_place_modern_regions_raions.csv"
+    )
 
     for table in [objects, materials, collectors, best_place]:
         if "object_id" in table.columns:
             table["object_id"] = table["object_id"].astype(str)
 
     if "year" in objects.columns:
-        objects["year"] = pd.to_numeric(objects["year"], errors="coerce")
+        objects["year"] = pd.to_numeric(
+            objects["year"],
+            errors="coerce",
+        )
 
     for table in [objects, materials, collectors, best_place]:
         for col in table.select_dtypes(include="object").columns:
@@ -82,54 +86,115 @@ def load_data():
                 table[col]
                 .astype(str)
                 .str.strip()
-                .replace({"": pd.NA, "nan": pd.NA, "None": pd.NA, "NaN": pd.NA})
+                .replace(
+                    {
+                        "": pd.NA,
+                        "nan": pd.NA,
+                        "None": pd.NA,
+                        "NaN": pd.NA,
+                    }
+                )
             )
 
     if not materials.empty and "material" in materials.columns:
         mat_join = (
             materials.dropna(subset=["material"])
             .groupby("object_id")["material"]
-            .apply(lambda s: ", ".join(sorted(set(s.astype(str)))))
+            .apply(
+                lambda s: ", ".join(
+                    sorted(set(s.astype(str)))
+                )
+            )
             .reset_index(name="materials_joined")
         )
-        objects = objects.merge(mat_join, on="object_id", how="left")
 
-    if not materials.empty and "material_category" in materials.columns:
+        objects = objects.merge(
+            mat_join,
+            on="object_id",
+            how="left",
+        )
+
+    if (
+        not materials.empty
+        and "material_category" in materials.columns
+    ):
         mat_cat_join = (
             materials.dropna(subset=["material_category"])
             .groupby("object_id")["material_category"]
-            .apply(lambda s: ", ".join(sorted(set(s.astype(str)))))
-            .reset_index(name="material_categories_joined")
+            .apply(
+                lambda s: ", ".join(
+                    sorted(set(s.astype(str)))
+                )
+            )
+            .reset_index(
+                name="material_categories_joined"
+            )
         )
-        objects = objects.merge(mat_cat_join, on="object_id", how="left")
+
+        objects = objects.merge(
+            mat_cat_join,
+            on="object_id",
+            how="left",
+        )
 
     collector_col = (
         "collector_normalized"
         if "collector_normalized" in collectors.columns
         else "collector"
     )
-    if not collectors.empty and collector_col in collectors.columns:
+
+    if (
+        not collectors.empty
+        and collector_col in collectors.columns
+    ):
         col_join = (
             collectors.dropna(subset=[collector_col])
             .groupby("object_id")[collector_col]
-            .apply(lambda s: ", ".join(sorted(set(s.astype(str)))))
+            .apply(
+                lambda s: ", ".join(
+                    sorted(set(s.astype(str)))
+                )
+            )
             .reset_index(name="collectors_joined")
         )
-        objects = objects.merge(col_join, on="object_id", how="left")
+
+        objects = objects.merge(
+            col_join,
+            on="object_id",
+            how="left",
+        )
 
     if not best_place.empty:
         keep = [
-            c for c in [
-                "object_id", "best_place", "place_precision", "country",
-                "region", "rajon", "village", "lat", "lon",
-                "has_coordinates", "koht",
+            c
+            for c in [
+                "object_id",
+                "best_place",
+                "place_precision",
+                "country",
+                "region",
+                "rajon",
+                "village",
+                "lat",
+                "lon",
+                "has_coordinates",
+                "koht",
+                "modern_region_est",
+                "modern_region_eng",
+                "modern_rajon_est",
+                "modern_rajon_eng",
+                "normalization_status",
             ]
             if c in best_place.columns
         ]
-        objects = objects.merge(best_place[keep], on="object_id", how="left")
+
+        objects = objects.merge(
+            best_place[keep],
+            on="object_id",
+            how="left",
+        )
 
     return objects, materials, collectors, best_place
-
 
 objects, materials, collectors, best_place = load_data()
 
