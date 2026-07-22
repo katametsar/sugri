@@ -4,6 +4,7 @@ import pandas as pd
 import plotly.express as px
 import streamlit as st
 from map_view import render_map
+from collector_network import render_collectors_network
 
 
 # ─────────────────────────────────────────────────────────
@@ -671,6 +672,11 @@ with tab4:
             st.dataframe(collector_df[cols].head(300), use_container_width=True, hide_index=True)
     else:
         st.info("Koguja veergu ei leitud.")
+
+    render_collectors_network(
+        filtered_objects,
+        collectors_path="collectors_long.csv"
+    )
 
 
 # ── Tab 5: Kohad ──────────────────────────────────────────
