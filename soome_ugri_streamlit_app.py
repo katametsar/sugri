@@ -633,7 +633,10 @@ with tab4:
     st.subheader("Kogujad")
 
     ids = set(df["object_id"].astype(str))
-    collectors_filtered = collectors[collectors["object_id"].isin(ids)].copy()
+    collectors_filtered = collectors[
+        collectors["object_id"].isin(ids)
+    ].copy()
+
     collector_col = (
         "collector_normalized"
         if "collector_normalized" in collectors_filtered.columns
@@ -642,42 +645,80 @@ with tab4:
 
     if collector_col in collectors_filtered.columns:
         top_collectors = (
-            collectors_filtered[collector_col].dropna().value_counts().head(30).reset_index()
+            collectors_filtered[collector_col]
+            .dropna()
+            .value_counts()
+            .head(30)
+            .reset_index()
         )
         top_collectors.columns = ["collector", "count"]
+
         fig = px.bar(
-            top_collectors, x="count", y="collector", orientation="h",
+            top_collectors,
+            x="count",
+            y="collector",
+            orientation="h",
             title="Top kogujad",
-            labels={"count": "Esinemiste arv", "collector": "Koguja"},
+            labels={
+                "count": "Esinemiste arv",
+                "collector": "Koguja",
+            },
         )
-        fig.update_layout(yaxis={"autorange": "reversed"}, height=650)
+        fig.update_layout(
+            yaxis={"autorange": "reversed"},
+            height=650,
+        )
         st.plotly_chart(fig, use_container_width=True)
 
         selected_collector = st.selectbox(
             "Vaata ühe koguja museaale",
             [""] + top_collectors["collector"].tolist(),
         )
+
         if selected_collector:
             collector_ids = collectors_filtered[
-                collectors_filtered[collector_col] == selected_collector
+                collectors_filtered[collector_col]
+                == selected_collector
             ]["object_id"].unique()
-            collector_df = df[df["object_id"].isin(collector_ids)]
+
+            collector_df = df[
+                df["object_id"].isin(collector_ids)
+            ]
+
             st.markdown(
-                f"Leitud **{len(collector_df)}** museaali kogujaga **{selected_collector}**."
+                f"Leitud **{len(collector_df)}** museaali "
+                f"kogujaga **{selected_collector}**."
             )
-            cols = [c for c in [
-                "object_id", "museal_number", "title", "ethnic_group",
-                "year", "materials_joined", "best_place", "object_url",
-            ] if c in collector_df.columns]
-            st.dataframe(collector_df[cols].head(300), use_container_width=True, hide_index=True)
+
+            cols = [
+                c
+                for c in [
+                    "object_id",
+                    "museal_number",
+                    "title",
+                    "ethnic_group",
+                    "year",
+                    "materials_joined",
+                    "best_place",
+                    "object_url",
+                ]
+                if c in collector_df.columns
+            ]
+
+            st.dataframe(
+                collector_df[cols].head(300),
+                use_container_width=True,
+                hide_index=True,
+            )
     else:
         st.info("Koguja veergu ei leitud.")
 
-    render_collectors_network(
-        filtered_objects,
-        collectors_path="collectors_long.csv"
-    )
+    st.divider()
 
+    render_collectors_network(
+        df,
+        collectors_path=DATA_DIR / "collectors_long.csv",
+    )
 
 # ── Tab 5: Kohad ──────────────────────────────────────────
 
