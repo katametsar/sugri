@@ -6,6 +6,10 @@ import streamlit as st
 from map_view import render_map
 from collector_network import render_collectors_network
 
+import io
+import math
+import re
+import unicodedata
 
 # ─────────────────────────────────────────────────────────
 # Page config
