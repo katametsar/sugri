@@ -1,4 +1,4 @@
-# Soome-ugri esemekogu uurimise rakendus
+# Soome-ugri esemekogu uurimise rakendus#
 
 Interaktiivne prototüüp Eesti Rahva Muuseumi (ERM) soome-ugri esemekogu uurimiseks.
 
