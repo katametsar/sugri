@@ -6,10 +6,6 @@ import streamlit as st
 from map_view import render_map
 from collector_network import render_collectors_network
 
-import io
-import math
-import re
-import unicodedata
 
 # ─────────────────────────────────────────────────────────
 # Page config
@@ -62,6 +58,12 @@ st.markdown(
 )
 
 
+def normalize_object_id(series):
+    """Normaliseeri object_id ühtseks stringiks (nt 123 ja 123.0 -> "123")."""
+    values = series.astype("string").str.strip()
+    return values.str.replace(r"^(\d+)\.0$", r"\1", regex=True)
+
+
 # ─────────────────────────────────────────────────────────
 # Data loading
 # ─────────────────────────────────────────────────────────
@@ -77,7 +79,7 @@ def load_data():
 
     for table in [objects, materials, collectors, best_place]:
         if "object_id" in table.columns:
-            table["object_id"] = table["object_id"].astype(str)
+            table["object_id"] = normalize_object_id(table["object_id"])
 
     if "year" in objects.columns:
         objects["year"] = pd.to_numeric(
@@ -170,6 +172,16 @@ def load_data():
         )
 
     if not best_place.empty:
+        if "object_id" in best_place.columns:
+            duplicate_ids = best_place["object_id"].duplicated(keep=False)
+            if duplicate_ids.any():
+                duplicate_count = int(best_place.loc[duplicate_ids, "object_id"].nunique())
+                st.warning(
+                    f"Kohatabelis leidus {duplicate_count} dubleeritud object_id väärtust. "
+                    "Rakendus kasutab iga museaali kohta esimest rida; palun kontrolli kohatabelit."
+                )
+                best_place = best_place.drop_duplicates("object_id", keep="first").copy()
+
         keep = [
             c
             for c in [
@@ -219,8 +231,6 @@ def looks_like_bad_value(value):
     normalized = text.replace(".", "").replace(",", "").replace("-", "").strip()
     if normalized.isdigit():
         return True
-    if len(text) <= 1:
-        return True
     return False
 
 
@@ -241,6 +251,62 @@ def readable_count(n):
     return f"{n:,}".replace(",", "\u202f")
 
 
+TABLE_COLUMN_CONFIG = {
+    "museal_number": "Museaali number",
+    "title": "Eseme nimi",
+    "ethnic_group": "Rahvus",
+    "ethnic_group_detail": "Rahvarühm",
+    "material_categories_joined": "Materjalikategooria",
+    "materials_joined": "Materjal",
+    "year": "Kogumisaasta",
+    "collectors_joined": "Koguja",
+    "country": "Riik",
+    "modern_region_est": "Regioon",
+    "modern_rajon_est": "Rajoon",
+    "object_url": st.column_config.LinkColumn(
+        "Museaal MuISis",
+        display_text="Ava MuISis",
+    ),
+}
+
+
+def museum_table_columns(df):
+    """Return the standard user-facing museum table columns that exist in df."""
+    wanted = [
+        "museal_number",
+        "title",
+        "ethnic_group",
+        "ethnic_group_detail",
+        "material_categories_joined",
+        "materials_joined",
+        "year",
+        "collectors_joined",
+        "country",
+        "modern_region_est",
+        "modern_rajon_est",
+        "object_url",
+    ]
+    return [c for c in wanted if c in df.columns]
+
+
+def show_museum_table(df, limit=500):
+    """Display a consistent Estonian-language museum table."""
+    cols = museum_table_columns(df)
+    if not cols:
+        st.info("Kuvatavaid museaaliandmeid ei leitud.")
+        return
+    st.dataframe(
+        df[cols].head(limit),
+        use_container_width=True,
+        hide_index=True,
+        column_config={
+            c: TABLE_COLUMN_CONFIG[c]
+            for c in cols
+            if c in TABLE_COLUMN_CONFIG
+        },
+    )
+
+
 def ids_for_long_filter(long_df, value_col, selected_values):
     if not selected_values or long_df.empty or value_col not in long_df.columns:
         return None
@@ -251,7 +317,9 @@ def apply_all_filters(
     source_df,
     search_text=None,
     year_range=None,
+    include_unknown_years=False,
     selected_ethnic=None,
+    selected_ethnic_detail=None,
     selected_material_categories=None,
     selected_materials=None,
     selected_collectors=None,
@@ -267,7 +335,7 @@ def apply_all_filters(
     if "search" not in exclude and search_text:
         mask = pd.Series(False, index=filtered.index)
         for col in [
-            "title", "description", "ethnic_group", "museal_number",
+            "title", "description", "ethnic_group", "ethnic_group_detail", "museal_number",
             "materials_joined", "material_categories_joined", "collectors_joined",
             "best_place", "country",
             "modern_region_est", "modern_rajon_est",
@@ -279,13 +347,40 @@ def apply_all_filters(
         filtered = filtered[mask]
 
     if "year" not in exclude and year_range and "year" in filtered.columns:
-        filtered = filtered[
-            filtered["year"].isna()
-            | filtered["year"].between(year_range[0], year_range[1])
-        ]
+        known_years = filtered["year"].dropna()
+        if not known_years.empty:
+            full_min = int(objects["year"].dropna().min())
+            full_max = int(objects["year"].dropna().max())
+            is_full_range = (
+                int(year_range[0]) == full_min
+                and int(year_range[1]) == full_max
+            )
+
+            year_mask = filtered["year"].between(
+                year_range[0],
+                year_range[1],
+            )
+
+            # Täisvaates jäävad kogumisaastata annetused nähtavale.
+            # Kui kasutaja kitsendab aastavahemikku, ei kuulu teadmata
+            # kogumisaastaga museaalid sellesse vahemikku, v.a kui kasutaja
+            # need eraldi sisse lülitab.
+            if is_full_range or include_unknown_years:
+                year_mask |= filtered["year"].isna()
+
+            filtered = filtered[year_mask]
 
     if "ethnic_group" not in exclude and selected_ethnic and "ethnic_group" in filtered.columns:
         filtered = filtered[filtered["ethnic_group"].isin(selected_ethnic)]
+
+    if (
+        "ethnic_group_detail" not in exclude
+        and selected_ethnic_detail
+        and "ethnic_group_detail" in filtered.columns
+    ):
+        filtered = filtered[
+            filtered["ethnic_group_detail"].isin(selected_ethnic_detail)
+        ]
 
     if "material_category" not in exclude and selected_material_categories:
         ids = ids_for_long_filter(materials, "material_category", selected_material_categories)
@@ -323,7 +418,9 @@ def option_df_for(exclude_name):
         objects,
         search_text=st.session_state.get("search_text", ""),
         year_range=st.session_state.get("year_range", None),
+        include_unknown_years=st.session_state.get("include_unknown_years", False),
         selected_ethnic=st.session_state.get("ethnic_group", []),
+        selected_ethnic_detail=st.session_state.get("ethnic_group_detail", []),
         selected_material_categories=st.session_state.get("material_category", []),
         selected_materials=st.session_state.get("material", []),
         selected_collectors=st.session_state.get("collector", []),
@@ -349,7 +446,8 @@ def clean_stale_selection(key, valid_options):
 
 def reset_filters():
     st.session_state["search_text"] = ""
-    for key in ["ethnic_group", "material_category", "material",
+    st.session_state["include_unknown_years"] = False
+    for key in ["ethnic_group", "ethnic_group_detail", "material_category", "material",
                 "collector", "country", "modern_region_est", "modern_rajon_est"]:
         st.session_state[key] = []
     if "year" in objects.columns and objects["year"].notna().any():
@@ -366,10 +464,16 @@ def reset_filters():
 if "search_text" not in st.session_state:
     st.session_state["search_text"] = ""
 
-for key in ["ethnic_group", "material_category", "material",
+if "include_unknown_years" not in st.session_state:
+    st.session_state["include_unknown_years"] = False
+
+for key in ["ethnic_group", "ethnic_group_detail", "material_category", "material",
             "collector", "country", "modern_region_est", "modern_rajon_est"]:
     if key not in st.session_state:
         st.session_state[key] = []
+
+min_year_default = None
+max_year_default = None
 
 if "year" in objects.columns and objects["year"].notna().any():
     min_year_default = int(objects["year"].dropna().min())
@@ -398,7 +502,7 @@ st.markdown(
 # ─────────────────────────────────────────────────────────
 
 st.sidebar.title("Filtrid")
-st.sidebar.caption("Valikud uuenevad üksteise põhjal.")
+st.sidebar.caption("Filtrid mõjutavad üksteist ja uuenevad vastavalt valikutele.")
 st.sidebar.button("Tühjenda filtrid", on_click=reset_filters)
 
 st.sidebar.text_input(
@@ -408,13 +512,38 @@ st.sidebar.text_input(
     help="Otsib nimetuse, kirjelduse, rahvarühma, museaalinumbri, materjali, koguja ja kohainfo seest.",
 )
 
-if "year" in objects.columns and objects["year"].notna().any():
-    st.sidebar.slider("Aasta", min_year_default, max_year_default, key="year_range")
+if min_year_default is not None and max_year_default is not None:
+    st.sidebar.slider(
+        "Kogumisaasta",
+        min_year_default,
+        max_year_default,
+        key="year_range",
+    )
+    st.sidebar.checkbox(
+        "Näita ka kogumisaastata museaale",
+        key="include_unknown_years",
+        help=(
+            "Need on museaalid, millel puudub kogumisaasta – näiteks "
+            "muuseumile annetatud esemed, mis ei kuulu kogumisekspeditsiooni. "
+            "Täieliku aastavahemiku korral on need niikuinii nähtavad."
+        ),
+    )
 
 if "ethnic_group" in objects.columns:
     opts = unique_clean(option_df_for("ethnic_group")["ethnic_group"])
     clean_stale_selection("ethnic_group", opts)
     st.sidebar.multiselect("Rahvarühm", opts, key="ethnic_group")
+
+if "ethnic_group_detail" in objects.columns:
+    opts = unique_clean(
+        option_df_for("ethnic_group_detail")["ethnic_group_detail"]
+    )
+    clean_stale_selection("ethnic_group_detail", opts)
+    st.sidebar.multiselect(
+        "Täpsem rahvusrühm",
+        opts,
+        key="ethnic_group_detail",
+    )
 
 if "material_category" in materials.columns:
     opts = long_options_for(materials, "material_category", option_df_for("material_category"))
@@ -455,7 +584,9 @@ df = apply_all_filters(
     objects,
     search_text=st.session_state.get("search_text", ""),
     year_range=st.session_state.get("year_range", None),
+    include_unknown_years=st.session_state.get("include_unknown_years", False),
     selected_ethnic=st.session_state.get("ethnic_group", []),
+    selected_ethnic_detail=st.session_state.get("ethnic_group_detail", []),
     selected_material_categories=st.session_state.get("material_category", []),
     selected_materials=st.session_state.get("material", []),
     selected_collectors=st.session_state.get("collector", []),
@@ -553,11 +684,7 @@ with tab1:
             st.plotly_chart(fig, use_container_width=True)
 
     st.markdown("#### Näited filtrisse jäänud museaalidest")
-    preview_cols = [c for c in [
-        "object_id", "museal_number", "title", "ethnic_group",
-        "year", "materials_joined", "collectors_joined", "best_place",
-    ] if c in df.columns]
-    st.dataframe(df[preview_cols].head(100), use_container_width=True, hide_index=True)
+    show_museum_table(df, limit=100)
 
 
 # ── Tab 2: Rahvarühmad ────────────────────────────────────
@@ -583,12 +710,7 @@ with tab2:
         if selected_group:
             group_df = df[df["ethnic_group"] == selected_group]
             st.markdown(f"Leitud **{len(group_df)}** museaali rahvarühmaga **{selected_group}**.")
-            cols = [c for c in [
-                "object_id", "museal_number", "title", "year",
-                "materials_joined", "collectors_joined", "best_place",
-                "object_url", "image_url",
-            ] if c in group_df.columns]
-            st.dataframe(group_df[cols].head(300), use_container_width=True, hide_index=True)
+            show_museum_table(group_df, limit=300)
     else:
         st.info("Rahvarühma veergu ei leitud.")
 
@@ -633,36 +755,7 @@ with tab3:
         df["object_id"].astype(str).isin(material_object_ids)
     ].copy()
 
-    material_table_cols = [
-        c for c in [
-            "museal_number",
-            "title",
-            "ethnic_group",
-            "year",
-            "materials_joined",
-            "object_url",
-        ]
-        if c in material_objects.columns
-    ]
-
-    material_table = material_objects[material_table_cols].drop_duplicates()
-
-    st.dataframe(
-        material_table.head(500),
-        use_container_width=True,
-        hide_index=True,
-        column_config={
-            "museal_number": "Museaalinumber",
-            "title": "Ese",
-            "ethnic_group": "Rahvarühm",
-            "year": "Aasta",
-            "materials_joined": "Materjalid",
-            "object_url": st.column_config.LinkColumn(
-                "Museaal MuISis",
-                display_text="Ava MuISis",
-            ),
-        },
-    )
+    show_museum_table(material_objects.drop_duplicates("object_id"), limit=500)
 
 
 # ── Tab 4: Kogujad ────────────────────────────────────────
@@ -728,26 +821,7 @@ with tab4:
                 f"kogujaga **{selected_collector}**."
             )
 
-            cols = [
-                c
-                for c in [
-                    "object_id",
-                    "museal_number",
-                    "title",
-                    "ethnic_group",
-                    "year",
-                    "materials_joined",
-                    "best_place",
-                    "object_url",
-                ]
-                if c in collector_df.columns
-            ]
-
-            st.dataframe(
-                collector_df[cols].head(300),
-                use_container_width=True,
-                hide_index=True,
-            )
+            show_museum_table(collector_df, limit=300)
     else:
         st.info("Koguja veergu ei leitud.")
 
@@ -848,20 +922,30 @@ with tab5:
 with tab6:
     st.subheader("Andmetabel")
 
-    default_cols = [c for c in [
-        "museal_number", "title", "ethnic_group",
-        "year", "materials_joined", "collectors_joined",
-        "country", "modern_region_est", "modern_rajon_est",
-        "map_precision", "object_url",
-    ] if c in df.columns]
+    default_cols = museum_table_columns(df)
 
     selected_cols = st.multiselect(
         "Vali kuvatavad veerud",
         options=list(df.columns),
         default=default_cols,
+        format_func=lambda c: (
+            TABLE_COLUMN_CONFIG[c]
+            if c in TABLE_COLUMN_CONFIG
+            and isinstance(TABLE_COLUMN_CONFIG[c], str)
+            else c
+        ),
     )
 
-    st.markdown(f"Näidatakse **{readable_count(len(df))}** rida")
+    if len(df) > 1000:
+        st.markdown(
+            f"Kuvatakse esimesed **1000** rida **{readable_count(len(df))}** reast. "
+            "CSV allalaadimine sisaldab kõiki filtreeritud ridu."
+        )
+    else:
+        st.markdown(
+            f"Kuvatakse **{readable_count(len(df))}** rida. "
+            "CSV allalaadimine sisaldab kõiki filtreeritud ridu."
+        )
 
     if selected_cols:
         st.dataframe(
@@ -869,10 +953,9 @@ with tab6:
             use_container_width=True,
             hide_index=True,
             column_config={
-                "object_url": st.column_config.LinkColumn(
-                    "Museaal MuISis",
-                    display_text="Ava MuISis",
-                )
+                c: TABLE_COLUMN_CONFIG[c]
+                for c in selected_cols
+                if c in TABLE_COLUMN_CONFIG
             },
         )
         csv = df[selected_cols].to_csv(index=False).encode("utf-8")

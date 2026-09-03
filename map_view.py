@@ -32,6 +32,7 @@ COUNTRY_MAP = {
     "Moldova": ("MDA", "Moldova"),
     "Eesti": ("EST", "Eesti"),
     "Norra": ("NOR", "Norra"),
+    "Rumeenia": ("ROU", "Rumeenia"),
 }
 
 REGION_ALIASES = {
@@ -256,21 +257,21 @@ def update_selection_from_chart(
 
 
 def _on_region_map_select():
-    """Klõps regioonikaardil: uuenda valikut TURVALISELT enne selectbox'i loomist.
-
-    NB: Streamlit ei luba `st.session_state[key] = ...` teha PÄRAST seda, kui
-    sama `key`'ga vidin on juba selles skriptijooksus loodud (see viskab
-    StreamlitAPIException'i). Callback'id (`on_select=...`) käivitatakse
-    Streamlit'i poolt enne skripti ülejäänud osa täitmist, mistõttu on siin
-    kirjutamine turvaline — erinevalt varasemast versioonist, kus sama asja
-    üritati teha `st.plotly_chart()` väljakutse JÄREL, samas skriptijooksus.
-    """
+    """Klõps regioonikaardil valib regiooni ja avab samas kaardialas rajoonid."""
     previous_region = st.session_state.get("map_region_est")
     update_selection_from_chart(
-        "map_region_chart", "map_region_lookup", "map_region_est"
+        "map_region_chart",
+        "map_region_lookup",
+        "map_region_est",
     )
     if st.session_state.get("map_region_est") != previous_region:
         st.session_state.pop("map_drilldown_district_est", None)
+        st.session_state["map_level"] = "Rajoonid"
+
+
+def _show_region_level():
+    st.session_state["map_level"] = "Regioonid"
+    st.session_state.pop("map_drilldown_district_est", None)
 
 
 def _on_drilldown_district_select():
@@ -315,9 +316,12 @@ def display_items(items, heading):
             "collector_normalized",
             "collector",
         ],
-        "Rahvarühm": [
+        "Rahvus": [
             "ethnic_group",
             "ethnicity",
+        ],
+        "Rahvarühm": [
+            "ethnic_group_detail",
         ],
         "Kogumiskoht": [
             "best_place",
@@ -521,8 +525,15 @@ def render_regions_map(df):
         )
         return
 
-    adm1 = load_boundaries(ADM1_URL)
-    name_col = best_name_column(adm1)
+    try:
+        adm1 = load_boundaries(ADM1_URL)
+        name_col = best_name_column(adm1)
+    except Exception:
+        st.warning(
+            "Venemaa regioonide piirifaili ei õnnestunud praegu laadida. "
+            "Ülejäänud rakendus töötab edasi; proovi kaardivaadet hiljem uuesti."
+        )
+        return
 
     counts = (
         rus.groupby(
@@ -544,14 +555,14 @@ def render_regions_map(df):
         how="left",
     )
 
-    map_df = adm1.merge(
+    region_map = adm1.merge(
         counts,
         left_on=name_col,
         right_on="boundary_name",
         how="inner",
     ).reset_index(drop=True)
 
-    if map_df.empty:
+    if region_map.empty:
         st.warning("Regioonid ei leidnud piirifailis vastet.")
         return
 
@@ -573,73 +584,131 @@ def render_regions_map(df):
     ):
         st.session_state["map_region_est"] = next(iter(est_to_eng))
 
+    if "map_level" not in st.session_state:
+        st.session_state["map_level"] = "Regioonid"
+
+    st.radio(
+        "Kaardi tase",
+        ["Regioonid", "Rajoonid"],
+        horizontal=True,
+        key="map_level",
+    )
+
     selected_region_est = st.selectbox(
-        "Vali regioon või klõpsa kaardil",
+        "Vali regioon",
         list(est_to_eng.keys()),
         key="map_region_est",
     )
     selected_region_eng = est_to_eng[selected_region_est]
 
-    map_df["map_id"] = map_df.index.astype(str)
-    selected_geometry = map_df[
-        map_df["modern_region_est"] == selected_region_est
-    ]
-    center, zoom = map_center_and_zoom(
-        selected_geometry,
-        default_center={"lat": 61, "lon": 65},
-        default_zoom=2.2,
-    )
-
-    fig = px.choropleth_map(
-        map_df,
-        geojson=map_df.__geo_interface__,
-        locations="map_id",
-        featureidkey="properties.map_id",
-        color="museaale",
-        hover_name="modern_region_est",
-        hover_data={"museaale": True, "map_id": False},
-        labels={"museaale": "Museaalide arv"},
-        map_style="carto-positron",
-        center=center,
-        zoom=zoom,
-        opacity=0.75,
-        title="Venemaa regioonid",
-    )
-    fig.update_layout(margin=dict(l=0, r=0, t=45, b=0))
-
-    st.session_state["map_region_lookup"] = dict(
-        zip(
-            map_df["map_id"].astype(str),
-            map_df["modern_region_est"].astype(str),
+    # ── REGIOONIVAADE ─────────────────────────────────────
+    if st.session_state["map_level"] == "Regioonid":
+        region_map["map_id"] = region_map.index.astype(str)
+        selected_geometry = region_map[
+            region_map["modern_region_est"] == selected_region_est
+        ]
+        center, zoom = map_center_and_zoom(
+            selected_geometry,
+            default_center={"lat": 61, "lon": 65},
+            default_zoom=2.2,
         )
-    )
 
-    st.plotly_chart(
-        fig,
-        use_container_width=True,
-        key="map_region_chart",
-        on_select=_on_region_map_select,
-        selection_mode="points",
-    )
+        fig = px.choropleth_map(
+            region_map,
+            geojson=region_map.__geo_interface__,
+            locations="map_id",
+            featureidkey="properties.map_id",
+            color="museaale",
+            hover_name="modern_region_est",
+            hover_data={"museaale": True, "map_id": False},
+            labels={"museaale": "Museaalide arv"},
+            map_style="carto-positron",
+            center=center,
+            zoom=zoom,
+            opacity=0.75,
+            title="Venemaa regioonid",
+        )
+        fig.update_layout(margin=dict(l=0, r=0, t=45, b=0))
 
+        st.session_state["map_region_lookup"] = dict(
+            zip(
+                region_map["map_id"].astype(str),
+                region_map["modern_region_est"].astype(str),
+            )
+        )
 
-    st.markdown(f"### {selected_region_est}: rajoonid")
+        st.plotly_chart(
+            fig,
+            use_container_width=True,
+            key="map_region_chart",
+            on_select=_on_region_map_select,
+            selection_mode="points",
+        )
 
-    rajon_rows = rus[
-        (rus["modern_region_eng"] == selected_region_eng)
-        & rus["modern_rajon_eng"].notna()
-        & rus["modern_rajon_est"].notna()
-    ].copy()
-
-    if rajon_rows.empty:
-        st.info("Selle regiooni museaalidel ei ole rajooni määratud.")
+        selected_items = rus[
+            rus["modern_region_eng"] == selected_region_eng
+        ].copy()
         display_items(
-            rus[rus["modern_region_eng"] == selected_region_eng],
+            selected_items,
             f"{selected_region_est}: museaalid",
         )
         return
 
-    adm1_full, adm1_name, adm2_named = get_adm2_with_parent_regions()
+    # ── RAJOONIVAADE ──────────────────────────────────────
+    st.button(
+        "← Tagasi regioonide juurde",
+        on_click=_show_region_level,
+    )
+
+    region_items = rus[
+        rus["modern_region_eng"] == selected_region_eng
+    ].copy()
+
+    district_mask = (
+        region_items["modern_rajon_eng"].notna()
+        & region_items["modern_rajon_est"].notna()
+    )
+    district_items_all = region_items[district_mask].copy()
+    region_only_items = region_items[~district_mask].copy()
+
+    c1, c2, c3 = st.columns(3)
+    c1.metric(
+        "Museaale regioonis",
+        f"{region_items['object_id'].nunique():,}".replace(",", " "),
+    )
+    c2.metric(
+        "Rajoonini määratud",
+        f"{district_items_all['object_id'].nunique():,}".replace(",", " "),
+    )
+    c3.metric(
+        "Ainult regiooni tasemel",
+        f"{region_only_items['object_id'].nunique():,}".replace(",", " "),
+    )
+
+    if district_items_all.empty:
+        st.info(
+            "Selle regiooni museaalidel ei ole rajooni määratud. "
+            "Kõik museaalid on nähtavad allolevas tabelis."
+        )
+        display_items(
+            region_items,
+            f"{selected_region_est}: museaalid",
+        )
+        return
+
+    try:
+        adm1_full, adm1_name, adm2_named = get_adm2_with_parent_regions()
+    except Exception:
+        st.warning(
+            "Venemaa rajoonide piirifaili ei õnnestunud praegu laadida. "
+            "Regiooni museaalid on siiski allpool nähtavad."
+        )
+        display_items(
+            region_items,
+            f"{selected_region_est}: museaalid",
+        )
+        return
+
     region_match = match_table(
         [selected_region_eng],
         adm1_full[adm1_name].dropna().astype(str).tolist(),
@@ -650,6 +719,10 @@ def render_regions_map(df):
         region_match.iloc[0]["boundary_name"]
     ):
         st.warning("Valitud regioon ei leidnud piirifailis vastet.")
+        display_items(
+            region_items,
+            f"{selected_region_est}: museaalid",
+        )
         return
 
     adm2_region = adm2_named[
@@ -658,7 +731,7 @@ def render_regions_map(df):
     ].copy()
 
     district_counts = (
-        rajon_rows.groupby(
+        district_items_all.groupby(
             ["modern_rajon_est", "modern_rajon_eng"],
             as_index=False,
         )
@@ -692,7 +765,7 @@ def render_regions_map(df):
             "Selle regiooni rajoonid ei leidnud piirifailis vastet."
         )
         display_items(
-            rajon_rows,
+            region_items,
             f"{selected_region_est}: museaalid",
         )
         return
@@ -721,7 +794,7 @@ def render_regions_map(df):
         )
 
     selected_district_est = st.selectbox(
-        "Vali rajoon või klõpsa rajoonikaardil",
+        "Vali rajoon või klõpsa kaardil",
         list(est_to_eng_district.keys()),
         key=district_key,
     )
@@ -730,17 +803,16 @@ def render_regions_map(df):
     ]
 
     district_map["map_id"] = district_map.index.astype(str)
-    selected_district_geometry = district_map[
-        district_map["modern_rajon_est"]
-        == selected_district_est
+    selected_geometry = district_map[
+        district_map["modern_rajon_est"] == selected_district_est
     ]
-    district_center, district_zoom = map_center_and_zoom(
-        selected_district_geometry,
-        default_center=center,
-        default_zoom=max(zoom, 4.0),
+    center, zoom = map_center_and_zoom(
+        selected_geometry,
+        default_center={"lat": 61, "lon": 65},
+        default_zoom=4.0,
     )
 
-    district_fig = px.choropleth_map(
+    fig = px.choropleth_map(
         district_map,
         geojson=district_map.__geo_interface__,
         locations="map_id",
@@ -750,14 +822,12 @@ def render_regions_map(df):
         hover_data={"museaale": True, "map_id": False},
         labels={"museaale": "Museaalide arv"},
         map_style="carto-positron",
-        center=district_center,
-        zoom=district_zoom,
+        center=center,
+        zoom=zoom,
         opacity=0.78,
         title=f"{selected_region_est}: rajoonid",
     )
-    district_fig.update_layout(
-        margin=dict(l=0, r=0, t=45, b=0)
-    )
+    fig.update_layout(margin=dict(l=0, r=0, t=45, b=0))
 
     st.session_state["map_drilldown_district_lookup"] = dict(
         zip(
@@ -767,42 +837,60 @@ def render_regions_map(df):
     )
 
     st.plotly_chart(
-        district_fig,
+        fig,
         use_container_width=True,
         key="map_drilldown_district_chart",
         on_select=_on_drilldown_district_select,
         selection_mode="points",
     )
 
-
-    district_items = rajon_rows[
-        rajon_rows["modern_rajon_eng"]
+    selected_district_items = district_items_all[
+        district_items_all["modern_rajon_eng"]
         == selected_district_eng
     ].copy()
 
     display_items(
-        district_items,
-        (
-            f"{selected_region_est}, "
-            f"{selected_district_est}: museaalid"
-        ),
+        selected_district_items,
+        f"{selected_region_est}, {selected_district_est}: museaalid",
     )
 
+    if not region_only_items.empty:
+        with st.expander(
+            "Rajoon määramata – "
+            + f"{region_only_items['object_id'].nunique():,}".replace(",", " ")
+            + " museaali"
+        ):
+            st.caption(
+                "Nende museaalide tänapäevane regioon on teada, "
+                "kuid rajooni ei ole võimalik olemasoleva info põhjal "
+                "usaldusväärselt määrata."
+            )
+            display_items(
+                region_only_items,
+                f"{selected_region_est}: rajoon määramata",
+            )
+
 def get_adm2_with_parent_regions():
-    adm1 = load_boundaries(ADM1_URL)
-    adm2 = load_boundaries(ADM2_URL)
+    try:
+        adm1 = load_boundaries(ADM1_URL)
+        adm2 = load_boundaries(ADM2_URL)
+    except Exception as exc:
+        raise RuntimeError("Venemaa ADM1/ADM2 piirifailide laadimine ebaõnnestus.") from exc
 
     adm1_name = best_name_column(adm1)
     adm2_name = best_name_column(adm2)
 
-    adm2_points = adm2[
-        [adm2_name, "geometry"]
+    # Väga oluline: rajooni nime ei saa kasutada unikaalse võtmena.
+    # Venemaal leidub sama nimega rajoone eri regioonides (nt Beryozovsky).
+    # Seome iga konkreetse ADM2 polügooni tema vanemregiooniga unikaalse ID kaudu.
+    adm2_named = adm2.rename(
+        columns={adm2_name: "adm2_boundary_name"}
+    ).copy()
+    adm2_named["_adm2_id"] = range(len(adm2_named))
+
+    adm2_points = adm2_named[
+        ["_adm2_id", "adm2_boundary_name", "geometry"]
     ].copy()
-    adm2_points = adm2_points.rename(
-        columns={
-            adm2_name: "adm2_boundary_name"
-        }
-    )
     adm2_points["geometry"] = (
         adm2_points.geometry.representative_point()
     )
@@ -811,9 +899,7 @@ def get_adm2_with_parent_regions():
         [adm1_name, "geometry"]
     ].copy()
     adm1_for_join = adm1_for_join.rename(
-        columns={
-            adm1_name: "adm1_boundary_name"
-        }
+        columns={adm1_name: "adm1_boundary_name"}
     )
 
     parents = gpd.sjoin(
@@ -822,21 +908,14 @@ def get_adm2_with_parent_regions():
         how="left",
         predicate="within",
     )[
-        [
-            "adm2_boundary_name",
-            "adm1_boundary_name",
-        ]
-    ].drop_duplicates()
+        ["_adm2_id", "adm1_boundary_name"]
+    ].drop_duplicates(subset=["_adm2_id"])
 
-    adm2_named = adm2.rename(
-        columns={
-            adm2_name: "adm2_boundary_name"
-        }
-    )
     adm2_named = adm2_named.merge(
         parents,
-        on="adm2_boundary_name",
+        on="_adm2_id",
         how="left",
+        validate="one_to_one",
     )
 
     return (
@@ -845,249 +924,6 @@ def get_adm2_with_parent_regions():
         adm2_named,
     )
 
-
-def render_districts_map(df):
-    required = {
-        "country",
-        "modern_region_est",
-        "modern_region_eng",
-        "modern_rajon_est",
-        "modern_rajon_eng",
-        "object_id",
-    }
-    missing = required - set(df.columns)
-
-    if missing:
-        st.warning(
-            "Rajoonikaardi jaoks puuduvad veerud: "
-            + ", ".join(sorted(missing))
-        )
-        return
-
-    rus = df[
-        (df["country"] == "Venemaa")
-        & df["modern_region_eng"].notna()
-        & df["modern_region_est"].notna()
-        & df["modern_rajon_eng"].notna()
-        & df["modern_rajon_est"].notna()
-    ].copy()
-
-    if rus.empty:
-        st.info(
-            "Praeguste filtritega ei ole "
-            "Venemaa rajoonide andmeid."
-        )
-        return
-
-    region_options = (
-        rus[
-            [
-                "modern_region_est",
-                "modern_region_eng",
-            ]
-        ]
-        .drop_duplicates()
-        .sort_values("modern_region_est")
-    )
-    est_to_eng = dict(
-        zip(
-            region_options["modern_region_est"],
-            region_options["modern_region_eng"],
-        )
-    )
-
-    selected_region_est = st.selectbox(
-        "Vali regioon",
-        list(est_to_eng.keys()),
-        key="map_district_region",
-    )
-    selected_region_eng = est_to_eng[
-        selected_region_est
-    ]
-
-    adm1, adm1_name, adm2_named = (
-        get_adm2_with_parent_regions()
-    )
-
-    region_match = match_table(
-        [selected_region_eng],
-        adm1[adm1_name]
-        .dropna()
-        .astype(str)
-        .tolist(),
-        REGION_ALIASES,
-    )
-
-    if (
-        region_match.empty
-        or pd.isna(
-            region_match.iloc[0][
-                "boundary_name"
-            ]
-        )
-    ):
-        st.warning(
-            "Valitud regioon ei leidnud "
-            "piirifailis vastet."
-        )
-        return
-
-    boundary_region = region_match.iloc[0][
-        "boundary_name"
-    ]
-    adm2_region = adm2_named[
-        adm2_named["adm1_boundary_name"]
-        == boundary_region
-    ].copy()
-
-    counts = (
-        rus[
-            rus["modern_region_eng"]
-            == selected_region_eng
-        ]
-        .groupby(
-            [
-                "modern_region_est",
-                "modern_region_eng",
-                "modern_rajon_est",
-                "modern_rajon_eng",
-            ],
-            as_index=False,
-        )
-        .agg(museaale=("object_id", "nunique"))
-    )
-
-    matches = match_table(
-        counts["modern_rajon_eng"],
-        adm2_region[
-            "adm2_boundary_name"
-        ]
-        .dropna()
-        .astype(str)
-        .tolist(),
-        threshold=62,
-    )
-
-    counts = counts.merge(
-        matches,
-        left_on="modern_rajon_eng",
-        right_on="data_name",
-        how="left",
-    )
-
-    map_df = adm2_region.merge(
-        counts,
-        left_on="adm2_boundary_name",
-        right_on="boundary_name",
-        how="inner",
-    ).reset_index(drop=True)
-
-    if map_df.empty:
-        st.warning(
-            "Selle regiooni rajoonid ei "
-            "leidnud piirifailis vastet."
-        )
-        return
-
-    map_df["map_id"] = map_df.index.astype(str)
-
-    # Varem oli zoom kõva koodiga (4.2) sõltumata valitud regiooni tegelikust
-    # suurusest, mistõttu kaart oli suurte/väikeste regioonide puhul kas liiga
-    # sisse- või väljasuumitud. Kasutame sama loogikat, mis regioonide kaardil.
-    center, zoom = map_center_and_zoom(
-        map_df,
-        default_center={"lat": 61, "lon": 65},
-        default_zoom=4.2,
-    )
-
-    fig = px.choropleth_map(
-        map_df,
-        geojson=map_df.__geo_interface__,
-        locations="map_id",
-        featureidkey="properties.map_id",
-        color="museaale",
-        hover_name="modern_rajon_est",
-        hover_data={
-            "museaale": True,
-            "map_id": False,
-        },
-        labels={"museaale": "Museaalide arv"},
-        map_style="carto-positron",
-        center=center,
-        zoom=zoom,
-        opacity=0.78,
-        title=f"{selected_region_est}: museaalide arv rajooniti",
-    )
-
-    fig.update_layout(
-        margin=dict(l=0, r=0, t=45, b=0)
-    )
-    st.session_state["map_district_lookup"] = dict(
-        zip(
-            map_df["map_id"].astype(str),
-            map_df["modern_rajon_est"].astype(str),
-        )
-    )
-
-    st.plotly_chart(
-        fig,
-        use_container_width=True,
-        key="map_district_chart",
-        on_select=lambda: update_selection_from_chart(
-            "map_district_chart",
-            "map_district_lookup",
-            "map_district_est",
-        ),
-        selection_mode="points",
-    )
-
-    district_options = (
-        counts[
-            [
-                "modern_rajon_est",
-                "modern_rajon_eng",
-            ]
-        ]
-        .drop_duplicates()
-        .sort_values("modern_rajon_est")
-    )
-
-    est_to_eng_district = dict(
-        zip(
-            district_options["modern_rajon_est"],
-            district_options["modern_rajon_eng"],
-        )
-    )
-
-    selected_district_est = st.selectbox(
-        "Vali rajoon, mille museaale vaadata",
-        list(est_to_eng_district.keys()),
-        key="map_district_est",
-    )
-    selected_district_eng = (
-        est_to_eng_district[
-            selected_district_est
-        ]
-    )
-
-    district_items = rus[
-        (
-            rus["modern_region_eng"]
-            == selected_region_eng
-        )
-        & (
-            rus["modern_rajon_eng"]
-            == selected_district_eng
-        )
-    ].copy()
-
-    display_items(
-        district_items,
-        (
-            f"{selected_region_est}, "
-            f"{selected_district_est}: museaalid"
-        ),
-    )
 
 
 def render_map(filtered_df):

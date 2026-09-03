@@ -3,8 +3,6 @@ from __future__ import annotations
 
 import math
 from itertools import combinations
-from pathlib import Path
-from typing import Optional
 
 import numpy as np
 import pandas as pd
@@ -25,7 +23,12 @@ def load_collectors(path: str = "collectors_long.csv") -> pd.DataFrame:
     # teisendatakse object_id kõikjal stringiks. CSV-st loetuna on see int64,
     # mistõttu allpool tehtav isin() võrdlus visible_ids (stringid) vastu
     # ei leidnud kunagi vasteid ja graafik jäi alati tühjaks.
-    data["object_id"] = data["object_id"].astype(str)
+    data["object_id"] = (
+        data["object_id"]
+        .astype("string")
+        .str.strip()
+        .str.replace(r"^(\d+)\.0$", r"\1", regex=True)
+    )
 
     if "collector_normalized" in data.columns:
         normalized = data["collector_normalized"]
