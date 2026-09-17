@@ -950,15 +950,24 @@ def render_map(filtered_df):
 
     df = prepare_map_data(filtered_df)
 
-    tab1, tab2 = st.tabs(
-        [
-            "Riigid",
-            "Venemaa: regioonid ja rajoonid",
-        ]
+    # NB: siin oli varem st.tabs(["Riigid", "Venemaa: regioonid ja rajoonid"]).
+    # Streamlit renderdab KÕIGI vahekaartide sisu kohe DOM-i (mitteaktiivsed on
+    # lihtsalt CSS-iga peidetud, laiusega 0px) — see ei sega tavalist Plotly
+    # SVG-graafikut ("Riigid"), aga Venemaa kaart kasutab choropleth_map'i, mis
+    # on WebGL/MapLibre-põhine ja arvutab oma kaardi mõõtmed ainult ÜKS KORD,
+    # loomise hetkel. Kui see hetk juhtub peidetud (0-laiuse) vahekaardi sees,
+    # jääbki kaart igaveseks valgeks, isegi kui hiljem vahekaardile klõpsad.
+    # st.radio() renderdab ainult valitud haru, nii et kaart luuakse alles
+    # siis, kui ta on juba päriselt ekraanil nähtaval.
+    view_choice = st.radio(
+        "Vaade",
+        ["Riigid", "Venemaa: regioonid ja rajoonid"],
+        horizontal=True,
+        key="map_top_level_view",
     )
+    st.divider()
 
-    with tab1:
+    if view_choice == "Riigid":
         render_country_map(df)
-
-    with tab2:
+    else:
         render_regions_map(df)
