@@ -1,0 +1,3281 @@
+[
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "country",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "NSV"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Venemaa"
+      }
+    ],
+    "description": "Mass edit cells in column country"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "country",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Komi NSV"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Venemaa"
+      }
+    ],
+    "description": "Mass edit cells in column country"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "rajon",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Šurõškarõ rajoon",
+          "šurõškarõ rajoon",
+          "Surõskarõ rajoon"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Šurõškarõ rajoon"
+      },
+      {
+        "from": [
+          "Kovolkino rajoon",
+          "Kovõlkinõ rajoon",
+          "Kovõlkino rajoon"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Kovolkino rajoon"
+      },
+      {
+        "from": [
+          "Malmõži rajoon",
+          "Malmõzi rajoon"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Malmõži rajoon"
+      },
+      {
+        "from": [
+          "Prjaza rajoon",
+          "Prjaža rajoon"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Prjaza rajoon"
+      }
+    ],
+    "description": "Mass edit cells in column rajon"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "region",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Udmurdi vabariik",
+          "Udmurdi Vabariik"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Udmurdi vabariik"
+      }
+    ],
+    "description": "Mass edit cells in column region"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "region",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Jamali Neenetsi AR",
+          "Jamali-Neenetsi AR"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Jamali Neenetsi RR"
+      },
+      {
+        "from": [
+          "Handi-Mansi RR",
+          "Handi- Mansi RR"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Handi-Mansi RR"
+      },
+      {
+        "from": [
+          "Handi-Mansi AR",
+          "Handi- Mansi AR"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Handi-Mansi RR"
+      }
+    ],
+    "description": "Mass edit cells in column region"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "region",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Leningradi oblast",
+          "Leningrad oblast",
+          "Leningardi oblast",
+          "Leningard oblast"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Leningradi oblast"
+      },
+      {
+        "from": [
+          "Murmanski oblast",
+          "Murmansk oblast"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Murmanski oblast"
+      },
+      {
+        "from": [
+          "Karjala ANSV",
+          "Karajala ANSV"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Karjala ANSV"
+      },
+      {
+        "from": [
+          "Bashkiri ANSV",
+          "Bashkiiri ANSV"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Bashkiri ANSV"
+      },
+      {
+        "from": [
+          "Samaara kubermang",
+          "Samara kubermang"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Samaara kubermang"
+      },
+      {
+        "from": [
+          "Udmurdi vabariik",
+          "Udmurdi vabariik udmurdi 1978 Aleksei Peterson"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Udmurdi vabariik"
+      },
+      {
+        "from": [
+          "Kirovi oblast",
+          "Kirov oblast"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Kirovi oblast"
+      }
+    ],
+    "description": "Mass edit cells in column region"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "region",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Handi-Mansi RR",
+          "Handi-Mansi",
+          "Handi-Mansi RR administratiivne üksus"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Handi-Mansi RR"
+      },
+      {
+        "from": [
+          "Mordva ANSV",
+          "Mordva ANSV riik"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Mordva ANSV"
+      },
+      {
+        "from": [
+          "Jamali Neenetsi RR",
+          "Jamali Neenetsi autonoomne ringkond"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Jamali Neenetsi RR"
+      },
+      {
+        "from": [
+          "Baškiiri ANSV riik",
+          "Baškiiri ANSV"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Baškiiri ANSV"
+      },
+      {
+        "from": [
+          "Taga-Karpaatia oblast",
+          "Taga-Karpaatia"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Taga-Karpaatia oblast"
+      }
+    ],
+    "description": "Mass edit cells in column region"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "region",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Mari Eli vabariik",
+          "Mari vabariik"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Mari Eli vabariik"
+      },
+      {
+        "from": [
+          "Murmanski oblast",
+          "Murmansi oblast"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Murmanski oblast"
+      }
+    ],
+    "description": "Mass edit cells in column region"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "region",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Mari"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Mari ANSV"
+      }
+    ],
+    "description": "Mass edit cells in column region"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "region",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Mari ANSV riik"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Mari ANSV"
+      }
+    ],
+    "description": "Mass edit cells in column region"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "region",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Mari ANSV vabariik"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Mari ANSV"
+      }
+    ],
+    "description": "Mass edit cells in column region"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "region",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Mari Eli vabariik"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Mari ANSV"
+      }
+    ],
+    "description": "Mass edit cells in column region"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "region",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Mordva vabariik"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Mordva ANSV"
+      }
+    ],
+    "description": "Mass edit cells in column region"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "region",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Mordva"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Mordva ANSV"
+      }
+    ],
+    "description": "Mass edit cells in column region"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "region",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Tatari"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Tatari ANSV"
+      }
+    ],
+    "description": "Mass edit cells in column region"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "region",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Tatari vabariik"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Tatari ANSV"
+      }
+    ],
+    "description": "Mass edit cells in column region"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "region",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Udmurdi vabariik"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Udmurdi ANSV"
+      }
+    ],
+    "description": "Mass edit cells in column region"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "region",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Votjaki oblast"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Votjaki kubermang"
+      }
+    ],
+    "description": "Mass edit cells in column region"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "region",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Komi ANSV vabariik"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Komi ANSV"
+      }
+    ],
+    "description": "Mass edit cells in column region"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "region",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Komi Vabariik"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Komi ANSV"
+      }
+    ],
+    "description": "Mass edit cells in column region"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "region",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Komi"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Komi ANSV"
+      }
+    ],
+    "description": "Mass edit cells in column region"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "region",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Karjala vabariik"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Karjala ANSV"
+      }
+    ],
+    "description": "Mass edit cells in column region"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "region",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Handi ANSV"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Handi-Mansi RR"
+      }
+    ],
+    "description": "Mass edit cells in column region"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "region",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Baškiiri vabariik"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Baškiiri ANSV"
+      }
+    ],
+    "description": "Mass edit cells in column region"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "region",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "ANSV"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Mari ANSV"
+      }
+    ],
+    "description": "Mass edit cells in column region"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "rajon",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Zubova Poljana rajoon",
+          "Zubova-Poljana rajoon"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Zubova Poljana rajoon"
+      },
+      {
+        "from": [
+          "Malaja Purga rajoon",
+          "Malaja-Purga rajoon"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Malaja Purga rajoon"
+      }
+    ],
+    "description": "Mass edit cells in column rajon"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "rajon",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Kezi rajoon",
+          "Keszi rajoon",
+          "Kez rajoon"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Kezi rajoon"
+      },
+      {
+        "from": [
+          "Boksitogorski rajoon",
+          "Boksidogorski rajoon",
+          "Boksitogorskib rajoon"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Boksitogorski rajoon"
+      },
+      {
+        "from": [
+          "Morki rajoon",
+          "Morko rajoon"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Morki rajoon"
+      },
+      {
+        "from": [
+          "Kotškurovi rajoon",
+          "Kotškurovo rajoon"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Kotškurovi rajoon"
+      },
+      {
+        "from": [
+          "Vinogradovo rajoon",
+          "Võnogradiv rajoon"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Vinogradovo rajoon"
+      },
+      {
+        "from": [
+          "Kingissepa rajoon",
+          "Kingisepa rajoon"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Kingissepa rajoon"
+      },
+      {
+        "from": [
+          "Kovolkino rajoon",
+          "Kovõlkini rajoon"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Kovolkino rajoon"
+      },
+      {
+        "from": [
+          "Ventspilsi rajoon",
+          "Ventspils rajoon"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Ventspilsi rajoon"
+      },
+      {
+        "from": [
+          "Zavjalovo rajoon",
+          "Zavjalovi rajoon"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Zavjalovo rajoon"
+      },
+      {
+        "from": [
+          "Olontsi rajoon",
+          "Olonetsi rajoon"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Olontsi rajoon"
+      },
+      {
+        "from": [
+          "Sovetski rajoonis",
+          "Sovetski rajoon"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Sovetski rajoonis"
+      },
+      {
+        "from": [
+          "Šurõškarõ rajoon",
+          "Šurõškorõ rajoon"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Šurõškarõ rajoon"
+      },
+      {
+        "from": [
+          "Ust-Kulomi rajoon",
+          "Ust-Kulom rajoon"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Ust-Kulomi rajoon"
+      },
+      {
+        "from": [
+          "Kilmezi rajoon",
+          "Kilmazi rajoon"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Kilmezi rajoon"
+      },
+      {
+        "from": [
+          "Vesjegonski rajoon",
+          "Vesjogonski rajoon"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Vesjegonski rajoon"
+      },
+      {
+        "from": [
+          "Kijasovo rajoon",
+          "Kijassovo rajoon"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Kijasovo rajoon"
+      },
+      {
+        "from": [
+          "Alnaši rajoon",
+          "Alnašši rajoon"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Alnaši rajoon"
+      },
+      {
+        "from": [
+          "Lovozero rajoon",
+          "Lavozero rajoon"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Lovozero rajoon"
+      },
+      {
+        "from": [
+          "Medvejevi rajoon",
+          "Medvedjevo rajoon"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Medvejevi rajoon"
+      },
+      {
+        "from": [
+          "Zubova Poljana rajoon",
+          "Zubovo-Poljana rajoon"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Zubova Poljana rajoon"
+      },
+      {
+        "from": [
+          "Ust-Võmi rajoon",
+          "Ust-Võm rajoon"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Ust-Võmi rajoon"
+      },
+      {
+        "from": [
+          "Sõsola rajoon",
+          "Sõssola rajoon"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Sõsola rajoon"
+      }
+    ],
+    "description": "Mass edit cells in column rajon"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "rajon",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Agrõzi rajoon",
+          "Agrõzhi rajoon"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Agrõzi rajoon"
+      }
+    ],
+    "description": "Mass edit cells in column rajon"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "rajon",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Volzhski rajoon",
+          "Volžski rajoon"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Volzhski rajoon"
+      }
+    ],
+    "description": "Mass edit cells in column rajon"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "rajon",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Staro-Šaigovski rajoon",
+          "Staro-Shaigovski rajoon"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Staro-Šaigovski rajoon"
+      }
+    ],
+    "description": "Mass edit cells in column rajon"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "rajon",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Boksitogorski rajoon",
+          "Bokitogorski rajoon",
+          "Boksitogovski rajoon"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Boksitogorski rajoon"
+      },
+      {
+        "from": [
+          "Boregovo rajoon",
+          "Beregovo rajoon",
+          "Beregono rajoon"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Boregovo rajoon"
+      },
+      {
+        "from": [
+          "Boksitogorski rajoon",
+          "Bokitogorski rajoon"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Boksitogorski rajoon"
+      },
+      {
+        "from": [
+          "Boksitogorski rajoon",
+          "Boksitogovski rajoon"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Boksitogorski rajoon"
+      },
+      {
+        "from": [
+          "Beregovo rajoon",
+          "Beregono rajoon"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Beregovo rajoon"
+      },
+      {
+        "from": [
+          "Lodeinoje Polje rajoon",
+          "Lodeikoje Polje rajoon"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Lodeinoje Polje rajoon"
+      },
+      {
+        "from": [
+          "Dubjorki rajoon",
+          "Dubjonki rajoon"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Dubjorki rajoon"
+      },
+      {
+        "from": [
+          "Boregovo rajoon",
+          "Beregovo rajoon"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Boregovo rajoon"
+      }
+    ],
+    "description": "Mass edit cells in column rajon"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "rajon",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Gornomariiski rajoon",
+          "Gornomari rajoon"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Gornomariiski rajoon"
+      }
+    ],
+    "description": "Mass edit cells in column rajon"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "village",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "AHandi-Mansi Rahvusringkond"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": ""
+      }
+    ],
+    "description": "Mass edit cells in column village"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "village",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Ajalooline asukoht: Vabatekstiline asukoht: Udmurdi"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": ""
+      }
+    ],
+    "description": "Mass edit cells in column village"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "village",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "EM"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": ""
+      }
+    ],
+    "description": "Mass edit cells in column village"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "village",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Ersa-Mordva administratiivne üksus"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": ""
+      }
+    ],
+    "description": "Mass edit cells in column village"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "village",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Ersa-Mordva piirkond"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": ""
+      }
+    ],
+    "description": "Mass edit cells in column village"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "village",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Handi-Mansi administratiivne üksus"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Handi_Mansi AR"
+      }
+    ],
+    "description": "Mass edit cells in column village"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "village",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Handi_Mansi AR"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Handi_Mansi AR"
+      }
+    ],
+    "description": "Mass edit cells in column village"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "village",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Handi- Mansi RR"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Handi- Mansi AR"
+      }
+    ],
+    "description": "Mass edit cells in column village"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "village",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Handi-Mansi"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Handi-Mansi AR"
+      }
+    ],
+    "description": "Mass edit cells in column village"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "village",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Kostrõg küla",
+          "Koštrõg küla",
+          "Kõstrõg küla"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Kostrõg küla"
+      },
+      {
+        "from": [
+          "Sǟnag küla",
+          "Sanag ? küla"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Sǟnag küla"
+      },
+      {
+        "from": [
+          "Mežadori küla",
+          "Mezadori küla"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Mežadori küla"
+      },
+      {
+        "from": [
+          "Mõškino küla",
+          "Mõskino küla"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Mõškino küla"
+      },
+      {
+        "from": [
+          "Handi-Mansi AR",
+          "Handi_Mansi AR"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Handi-Mansi AR"
+      },
+      {
+        "from": [
+          "Novo-Tatõšlõ küla",
+          "Novo-Tatõšlo küla"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Novo-Tatõšlõ küla"
+      },
+      {
+        "from": [
+          "Handi-Mansi rahvusringkond",
+          "Handi-Mansi Rahvusringkond"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Handi-Mansi AR"
+      },
+      {
+        "from": [
+          "Tugijõno küla",
+          "Tugijonõ küla"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Tugijõno küla"
+      },
+      {
+        "from": [
+          "Izevsk",
+          "Iževsk"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Izevsk"
+      },
+      {
+        "from": [
+          "Luž küla",
+          "Luz küla"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Luž küla"
+      },
+      {
+        "from": [
+          "Krasnoštšelje küla",
+          "Krasnõštšelje küla"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Krasnoštšelje küla"
+      },
+      {
+        "from": [
+          "Šaberdino küla",
+          "šaberdino küla"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Šaberdino küla"
+      }
+    ],
+    "description": "Mass edit cells in column village"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "village",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Jamali-Neenetsi Rahvusringkond",
+          "Jamali Neenetsi rahvusringkond"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Jamali-Neenetsi AR"
+      },
+      {
+        "from": [
+          "Jamali Neenetsi AR",
+          "Jamali-Neenetsi AR"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Jamali Neenetsi AR"
+      },
+      {
+        "from": [
+          "Malaja-Purga",
+          "Malaja Purga"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Malaja-Purga"
+      },
+      {
+        "from": [
+          "Varklet-Bodja küla",
+          "Varklet Bodja küla"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Varklet-Bodja küla"
+      },
+      {
+        "from": [
+          "Handi-Mansi AR",
+          "Handi- Mansi AR"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Handi-Mansi AR"
+      },
+      {
+        "from": [
+          "Jamali Neenetsi autonoomne ringkond",
+          "Jamali-Neenetsi autonoomne ringkond"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Jamali Neenetsi AR"
+      }
+    ],
+    "description": "Mass edit cells in column village"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "village",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Jamali Neenetsi AR",
+          "Jamali-Neenetsi AR"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Jamali Neenetsi AR"
+      }
+    ],
+    "description": "Mass edit cells in column village"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "village",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Jamali Neenetsi AR",
+          "Jamali Neenetsi RR",
+          "Jamali-Neenetsi ringkond"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Jamali Neenetsi AR"
+      },
+      {
+        "from": [
+          "Hantõ-Mansiisk",
+          "Hantõ-Mansiiski linn",
+          "Hantõ-Mansiiski"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Hantõ-Mansiisk"
+      },
+      {
+        "from": [
+          "Kosmodemjansk",
+          "Kosmodemjanski linn",
+          "Kosmodemjanski"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Kosmodemjansk"
+      },
+      {
+        "from": [
+          "Tutuka küla",
+          "Tutuk küla"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Tutuka küla"
+      },
+      {
+        "from": [
+          "Radogõši küla",
+          "Radogaši küla"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Radogõši küla"
+      },
+      {
+        "from": [
+          "Võlgorti küla",
+          "Võlgort küla"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Võlgorti küla"
+      },
+      {
+        "from": [
+          "Nurumbal küla",
+          "Nurumbali küla"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Nurumbal küla"
+      },
+      {
+        "from": [
+          "Bolshoje Maresjevo küla",
+          "Bolshoje Maresjevo"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Bolshoje Maresjevo küla"
+      },
+      {
+        "from": [
+          "Varklet-Bodja küla",
+          "Varklet-Bodja külast"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Varklet-Bodja küla"
+      },
+      {
+        "from": [
+          "Lombovoš küla",
+          "Lombovoši küla"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Lombovoš küla"
+      },
+      {
+        "from": [
+          "Gobovts küla",
+          "Gobovits küla"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Gobovts küla"
+      },
+      {
+        "from": [
+          "Senteki küla",
+          "Sentaki küla"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Senteki küla"
+      },
+      {
+        "from": [
+          "Krasnõi Bor küla",
+          "Krasnõi Bori küla"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Krasnõi Bor küla"
+      },
+      {
+        "from": [
+          "Kez'i",
+          "Keszi"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Kezi küla"
+      },
+      {
+        "from": [
+          "Mati küla",
+          "Matti küla"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Mati küla"
+      },
+      {
+        "from": [
+          "Kezduri küla",
+          "Kezdur küla"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Kezduri küla"
+      },
+      {
+        "from": [
+          "Vanzevati küla",
+          "Vonzevati küla"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Vanzevati küla"
+      },
+      {
+        "from": [
+          "Pankretovo küla",
+          "Pankratova küla"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Pankretovo küla"
+      },
+      {
+        "from": [
+          "Boksitogorski",
+          "Boksitogorski rjn"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Boksitogorski"
+      },
+      {
+        "from": [
+          "Tailakova küla",
+          "Tailakovo küla"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Tailakova küla"
+      },
+      {
+        "from": [
+          "Kuzjabaevo küla",
+          "Kuzjobaevo küla"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Kuzjabaevo küla"
+      },
+      {
+        "from": [
+          "Kuzebajeva küla",
+          "Kuzebojevo küla"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Kuzebajeva küla"
+      },
+      {
+        "from": [
+          "Lužitsõ küla",
+          "Luužitsa küla"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Lužitsõ küla"
+      },
+      {
+        "from": [
+          "Handi-Mansi RR",
+          "Handi-Mansi AR"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Handi-Mansi AR"
+      },
+      {
+        "from": [
+          "Võskovo küla",
+          "Võsokovo küla"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Võskovo küla"
+      },
+      {
+        "from": [
+          "Mordovski Pimburi küla",
+          "Mordvski Pimburi küla"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Mordovski Pimburi küla"
+      },
+      {
+        "from": [
+          "Tugijõno küla",
+          "Tugijanõ küla"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Tugijõno küla"
+      },
+      {
+        "from": [
+          "Malmõzhi",
+          "Malmõzh"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Malmõzhi"
+      },
+      {
+        "from": [
+          "Ahvenjärve küla",
+          "Ahvenjärvi küla"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Ahvenjärve küla"
+      },
+      {
+        "from": [
+          "Ovgorti küla",
+          "Ovgort küla"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Ovgorti küla"
+      },
+      {
+        "from": [
+          "Kez'i asulat",
+          "Kez'i asulad"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Kez'i asula"
+      },
+      {
+        "from": [
+          "Varzibašši küla",
+          "Varzibašš küla"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Varzibašši küla"
+      },
+      {
+        "from": [
+          "Kartasikt küla",
+          "Kartasikti küla"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Kartasikt küla"
+      },
+      {
+        "from": [
+          "Vistino küla",
+          "Visitino küla"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Vistino küla"
+      },
+      {
+        "from": [
+          "Konnova küla",
+          "Konnovo küla"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Konnova küla"
+      },
+      {
+        "from": [
+          "Markuntan küla",
+          "Markuntanh küla"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Markuntan küla"
+      },
+      {
+        "from": [
+          "Paanajärve küla",
+          "Paanajärvi küla"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Paanajärve küla"
+      }
+    ],
+    "description": "Mass edit cells in column village"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "village",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Kljutševo küla",
+          "Klutšova küla"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Kljutševo küla"
+      },
+      {
+        "from": [
+          "Sürg küla",
+          "Sürja küla"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Sürja küla"
+      },
+      {
+        "from": [
+          "Arskaht küla",
+          "Arshkahti küla"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Arskaht küla"
+      },
+      {
+        "from": [
+          "Lokšudja küla",
+          "Ljukšudja küla"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Lokšudja küla"
+      },
+      {
+        "from": [
+          "Mitetskoe küla",
+          "Miitetskoje küla"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Mitetskoe küla"
+      },
+      {
+        "from": [
+          "Tšermõševo küla",
+          "Tšernõševo küla"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Tšermõševo küla"
+      },
+      {
+        "from": [
+          "Mežnjaki küla",
+          "Mežniki küla"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Mežnjaki küla"
+      },
+      {
+        "from": [
+          "Kuhmoinen kihelkond",
+          "Kuhmoniemi kihelkond"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Kuhmoinen kihelkond"
+      }
+    ],
+    "description": "Mass edit cells in column village"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "village",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Handi-Mansi AR",
+          "Hantõ-Mansiisk",
+          "Handi-Mansi autonoomne ringkond",
+          "Handi-Mansi määramata"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Handi-Mansi AR"
+      },
+      {
+        "from": [
+          "Pankretovo küla",
+          "Pankratovo (Prangatisht)",
+          "Pankratovo"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Pankretovo küla"
+      },
+      {
+        "from": [
+          "Ust-Kulomi alevik",
+          "Ust-Kulom asula"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Ust-Kulomi alevik"
+      },
+      {
+        "from": [
+          "Eesti-Ingeri",
+          "Eesti-Ingeri asula"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Eesti-Ingeri"
+      },
+      {
+        "from": [
+          "Sõktõvkar linn",
+          "Sõktõvkar"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Sõktõvkar linn"
+      },
+      {
+        "from": [
+          "Komi-Permi Ringkond",
+          "Komi-Permi rahvusringkond"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Komi-Permi AR"
+      },
+      {
+        "from": [
+          "Izevsk",
+          "Izhevsk"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Izevsk"
+      },
+      {
+        "from": [
+          "Jamali Neenetsi AR",
+          "Jamali- Neenetsi administratiivne üksus"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Jamali Neenetsi AR"
+      }
+    ],
+    "description": "Mass edit cells in column village"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "village",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Sikrõg küla",
+          "Sikrõgi küla"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Sikrõg küla"
+      },
+      {
+        "from": [
+          "Bobrozero küla",
+          "Bobrorero küla",
+          "Bobrozevo küla"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Bobrozero küla"
+      },
+      {
+        "from": [
+          "Bobrozero küla",
+          "Bobrorero küla"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Bobrozero küla"
+      },
+      {
+        "from": [
+          "Priezkalki talu",
+          "Priezkalni talu"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Priezkalki talu"
+      },
+      {
+        "from": [
+          "Pitrõg küla",
+          "Pitrõgi küla"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Pitrõg küla"
+      },
+      {
+        "from": [
+          "Botšoo küla",
+          "Botšvo küla"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Botšoo küla"
+      },
+      {
+        "from": [
+          "Sikrõg küla",
+          "Sikrõgi küla"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Sikrõg küla"
+      },
+      {
+        "from": [
+          "Sloboda küla",
+          "Slobodka küla"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Sloboda küla"
+      },
+      {
+        "from": [
+          "Bobrozero küla",
+          "Bobrozevo küla"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Bobrozero küla"
+      },
+      {
+        "from": [
+          "Tunkua küla",
+          "Tunkna küla"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Tunkua küla"
+      },
+      {
+        "from": [
+          "Ozolnieki talu",
+          "Ozolnieksi talu"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Ozolnieki talu"
+      },
+      {
+        "from": [
+          "Vilovatovo küla",
+          "Vilovstovo küla"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Vilovatovo küla"
+      },
+      {
+        "from": [
+          "Iira küla",
+          "Ira küla"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Iira küla"
+      },
+      {
+        "from": [
+          "Pitrõgi küla",
+          "Pitsõgi küla"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Pitrõgi küla"
+      },
+      {
+        "from": [
+          "Kuramaal",
+          "Kuramaa"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Kuramaa"
+      }
+    ],
+    "description": "Mass edit cells in column village"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "village",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Kosmodemjansk",
+          "Kosmodemosjansk"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Kosmodemjansk"
+      },
+      {
+        "from": [
+          "Pitrõgi küla",
+          "Pitrõg küla"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Pitrõgi küla"
+      },
+      {
+        "from": [
+          "Selištše küla",
+          "Seliše küla"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Selištše küla"
+      },
+      {
+        "from": [
+          "Kezi alevik",
+          "Kezi alev"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Kezi alevik"
+      },
+      {
+        "from": [
+          "Harkolovo küla",
+          "Harkovo küla"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Harkolovo küla"
+      }
+    ],
+    "description": "Mass edit cells in column village"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "rajon",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Atjaševo rajoon"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Atjashevo rajoon"
+      }
+    ],
+    "description": "Mass edit cells in column rajon"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "rajon",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Atšinski rajoon"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Atshinski rajoon"
+      }
+    ],
+    "description": "Mass edit cells in column rajon"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "rajon",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Berehove rajoon"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Beregove rajoon"
+      }
+    ],
+    "description": "Mass edit cells in column rajon"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "rajon",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Beregovo rajoon"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Beregove rajoon"
+      }
+    ],
+    "description": "Mass edit cells in column rajon"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "rajon",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Ižma rajoon"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Izhma rajoon"
+      }
+    ],
+    "description": "Mass edit cells in column rajon"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "rajon",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Kartasikt küla: Sõsola rajoon"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Sõsola rajoon"
+      }
+    ],
+    "description": "Mass edit cells in column rajon"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "rajon",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Medvedevo rajoon"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Medvedejevi rajoon"
+      }
+    ],
+    "description": "Mass edit cells in column rajon"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "rajon",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Medvedejevi rajoon"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Medvejevi rajoon"
+      }
+    ],
+    "description": "Mass edit cells in column rajon"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "rajon",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Mikrjanovi külanõukogu: Gornomari rajoon"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Gornomari rajoon"
+      }
+    ],
+    "description": "Mass edit cells in column rajon"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "rajon",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Možga rajoon"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Mozhga rajoon"
+      }
+    ],
+    "description": "Mass edit cells in column rajon"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "rajon",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Oršanski rajoon"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Oršanka rajoon"
+      }
+    ],
+    "description": "Mass edit cells in column rajon"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "rajon",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Oršanka rajoon"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Orshanka rajoon"
+      }
+    ],
+    "description": "Mass edit cells in column rajon"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "rajon",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Podporožje rajoon"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Podporozhje rajoon"
+      }
+    ],
+    "description": "Mass edit cells in column rajon"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "rajon",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Priluzski rajoon"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Priluzje rajoon"
+      }
+    ],
+    "description": "Mass edit cells in column rajon"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "rajon",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Ruzavka (Ruzajevka) rajoon"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Ruzajevka rajoon"
+      }
+    ],
+    "description": "Mass edit cells in column rajon"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "rajon",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Tšamzinka rajoon"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Tshamzinka rajoon"
+      }
+    ],
+    "description": "Mass edit cells in column rajon"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "village",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Doni"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Doni küla"
+      }
+    ],
+    "description": "Mass edit cells in column village"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "village",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Enontekiö"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Enontekiö"
+      }
+    ],
+    "description": "Mass edit cells in column village"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "village",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Enontekiö kihelkond"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Enontekiö"
+      }
+    ],
+    "description": "Mass edit cells in column village"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "village",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Enontekiö maakond"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Enontekiö"
+      }
+    ],
+    "description": "Mass edit cells in column village"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "village",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Enontekiö vald"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Enontekiö"
+      }
+    ],
+    "description": "Mass edit cells in column village"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "village",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Gami administratiivne üksus"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Gami"
+      }
+    ],
+    "description": "Mass edit cells in column village"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "village",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Gami"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Gami küla"
+      }
+    ],
+    "description": "Mass edit cells in column village"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "village",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Gami külakond"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Gami küla"
+      }
+    ],
+    "description": "Mass edit cells in column village"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "village",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Glinki (Šavimäe) küla"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Glinki küla"
+      }
+    ],
+    "description": "Mass edit cells in column village"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "village",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Handi"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Handi-Mansi AR"
+      }
+    ],
+    "description": "Mass edit cells in column village"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "village",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Haragenitshi (Harage)"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Harage"
+      }
+    ],
+    "description": "Mass edit cells in column village"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "village",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Izevski linn"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Izevsk linn"
+      }
+    ],
+    "description": "Mass edit cells in column village"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "village",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Iževsk linn"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Izevsk linn"
+      }
+    ],
+    "description": "Mass edit cells in column village"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "village",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Izevsk"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Izevsk linn"
+      }
+    ],
+    "description": "Mass edit cells in column village"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "village",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Jõgõperä (Krakolje) küla"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Jõgõperä küla"
+      }
+    ],
+    "description": "Mass edit cells in column village"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "village",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Joshkar-Ola"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Joshkar-Ola linn"
+      }
+    ],
+    "description": "Mass edit cells in column village"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "village",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Joškar-Ola linn"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Joshkar-Ola linn"
+      }
+    ],
+    "description": "Mass edit cells in column village"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "village",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Kez'i asula"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Kezi asula"
+      }
+    ],
+    "description": "Mass edit cells in column village"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "village",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Kezi alevik"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Kezi asula"
+      }
+    ],
+    "description": "Mass edit cells in column village"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "village",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Kezi küla"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Kezi asula"
+      }
+    ],
+    "description": "Mass edit cells in column village"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "village",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Kirjamo"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Kirjamo küla"
+      }
+    ],
+    "description": "Mass edit cells in column village"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "village",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Komi"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Komi-Permi AR"
+      }
+    ],
+    "description": "Mass edit cells in column village"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "village",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Komi-Permi administratiivne üksus"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Komi-Permi AR"
+      }
+    ],
+    "description": "Mass edit cells in column village"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "village",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Koola"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Koola poolsaar"
+      }
+    ],
+    "description": "Mass edit cells in column village"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "village",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Koola-Lapi"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Koola poolsaar"
+      }
+    ],
+    "description": "Mass edit cells in column village"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "village",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Korvala"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Korvala küla"
+      }
+    ],
+    "description": "Mass edit cells in column village"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "village",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Koštrõgi küla"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Koštrõg küla"
+      }
+    ],
+    "description": "Mass edit cells in column village"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "village",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Koštrõg küla"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Kostrõg küla"
+      }
+    ],
+    "description": "Mass edit cells in column village"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "village",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Krakolje"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Krakolje küla"
+      }
+    ],
+    "description": "Mass edit cells in column village"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "village",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Läti NSV"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Läti"
+      }
+    ],
+    "description": "Mass edit cells in column village"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "village",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Lembit Lepp"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": ""
+      }
+    ],
+    "description": "Mass edit cells in column village"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "village",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Liit"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": ""
+      }
+    ],
+    "description": "Mass edit cells in column village"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "village",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Lovozero asula"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Lovozero küla"
+      }
+    ],
+    "description": "Mass edit cells in column village"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "village",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Lovozero"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Lovozero küla"
+      }
+    ],
+    "description": "Mass edit cells in column village"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "village",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "NSV"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": ""
+      }
+    ],
+    "description": "Mass edit cells in column village"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "village",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Tatari riik"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Tatari"
+      }
+    ],
+    "description": "Mass edit cells in column village"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "village",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Vepsa administratiivne üksus"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Vepsa AR"
+      }
+    ],
+    "description": "Mass edit cells in column village"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "village",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Vepsa"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Vepsa AR"
+      }
+    ],
+    "description": "Mass edit cells in column village"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "village",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Vistino"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Vistino küla"
+      }
+    ],
+    "description": "Mass edit cells in column village"
+  }
+]
