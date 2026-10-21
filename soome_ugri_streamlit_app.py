@@ -73,9 +73,50 @@ def load_data():
     materials = pd.read_csv(DATA_DIR / "materials_long.csv")
     collectors = pd.read_csv(DATA_DIR / "collectors_long.csv")
 
-    best_place = pd.read_csv(
-        DATA_DIR / "object_best_place_modern_regions_raions.csv"
+    # Rakenduse ainus kohainfo allikas on uuendatud museaalipõhine töövihik.
+    place_path = DATA_DIR / "museaalide_kogumiskohad.xlsm"
+    best_place = pd.read_excel(
+        place_path, sheet_name="Asukohad", engine="openpyxl",
+        dtype={"Museaali ID": "string", "ERM B-number": "string"},
     )
+    best_place.columns = best_place.columns.str.strip()
+    best_place = best_place.rename(columns={
+        "Museaali ID": "object_id",
+        "ERM B-number": "erm_b_number",
+        "Algne kohakirjeldus": "best_place",
+        "Riik": "country",
+        "Regioon": "modern_region_est",
+        "Rajoon / omavalitsus": "modern_rajon_est",
+        "Küla / asula": "village",
+        "Laiuskraad": "lat",
+        "Pikkuskraad": "lon",
+        "Kaardipunkti tase": "map_precision",
+    })
+    required_place_columns = {
+        "object_id", "country", "modern_region_est", "modern_rajon_est",
+        "village", "lat", "lon", "map_precision", "best_place",
+    }
+    missing = required_place_columns - set(best_place.columns)
+    if missing:
+        raise ValueError(f"Kohatabelist puuduvad veerud: {sorted(missing)}")
+
+    # Mari Eli Vabariigi kaks nimekuju tähistavad sama piirkonda.
+    # Ühtlustame ainult rakenduse jaoks, algne Excel säilib muutmata.
+    best_place["modern_region_est"] = best_place["modern_region_est"].replace({
+        "Mari El Vabariik": "Mari Eli Vabariik",
+    })
+
+    # Algse kaardipunkti taseme sõnastuse säilitame (sh ajaloolised alad,
+    # omavalitsuste esinduspunktid ja kaardipunktita museaalid).
+    best_place["place_precision"] = best_place["map_precision"]
+    best_place["lat"] = pd.to_numeric(best_place["lat"], errors="coerce")
+    best_place["lon"] = pd.to_numeric(best_place["lon"], errors="coerce")
+
+    best_place["has_coordinates"] = (
+        pd.to_numeric(best_place["lat"], errors="coerce").notna()
+        & pd.to_numeric(best_place["lon"], errors="coerce").notna()
+    )
+
 
     for table in [objects, materials, collectors, best_place]:
         if "object_id" in table.columns:
@@ -201,6 +242,7 @@ def load_data():
                 "modern_rajon_est",
                 "modern_rajon_eng",
                 "map_precision",
+                "erm_b_number",
                 "normalization_status",
                 "normalization_note",
             ]
@@ -876,22 +918,11 @@ with tab5:
 
     with c2:
         if "map_precision" in df.columns:
-            precision_labels = {
-                "country": "Riik",
-                "region": "Regioon",
-                "district": "Rajoon",
-                "settlement": "Asula",
-            }
-
+            # Näitame töövihiku täpsustasemeid muutmata kujul;
+            # "omavalitsuse esinduspunkt" ei tähenda teadaolevat asulat.
             precision_counts = (
                 df["map_precision"]
                 .dropna()
-                .map(
-                    lambda x: precision_labels.get(
-                        str(x),
-                        str(x),
-                    )
-                )
                 .value_counts()
                 .reset_index()
             )
