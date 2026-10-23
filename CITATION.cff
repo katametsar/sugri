@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "Soome-ugri esemekogu uurimise rakendus"
+authors:
+  - family-names: "Metsar"
+    given-names: "Kata Maria"
+repository-code: "https://github.com/katametsar/sugri"
+license: MIT
+date-released: "2026-10-23"
